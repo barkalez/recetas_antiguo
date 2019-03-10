@@ -8,15 +8,11 @@
             <small class="text-muted">{{ receta.nombre }}</small>
           </div>
             <h4>Ingredientes</h4>
-            <small class="text-muted"><a class="article-title" href="#">{{ receta.ingrediente_1|default_if_none:"&nbsp;" }}</a></small>
-
             <ul>
+              <li type="disc">{{ receta.ingrediente_1|default_if_none:"&nbsp;" }}</li>
               <li type="disc">{{ receta.ingrediente_2|default_if_none:"&nbsp;" }}</li>
               <li type="disc">{{ receta.ingrediente_3|default_if_none:"&nbsp;" }}</li>
               <li type="disc">{{ receta.ingrediente_4|default_if_none:"&nbsp;" }}</li>
-
-              
-
             </ul>
         </div>
       </article>
