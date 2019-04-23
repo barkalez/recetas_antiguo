@@ -16,21 +16,14 @@
         </div>
           <h4>Ingredientes</h4>
           <ul>
-            {% if object.ingrediente_1 %}<li type="disc">{{ object.ingrediente_1|default_if_none:"&nbsp;" }}</li>{%endif%}
-            {% if object.ingrediente_2 %}<li type="disc">{{ object.ingrediente_2|default_if_none:"&nbsp;" }}</li>{%endif%}
-            {% if object.ingrediente_3 %}<li type="disc">{{ object.ingrediente_3|default_if_none:"&nbsp;" }}</li>{%endif%}
-            {% if object.ingrediente_4 %}<li type="disc">{{ object.ingrediente_4|default_if_none:"&nbsp;" }}</li>{%endif%}
-            <!--
-            <li type="disc">{{ receta.ingrediente_1|default_if_none:"&nbsp;" }}</li>
-            <li type="disc">{{ receta.ingrediente_2|default_if_none:"&nbsp;" }}</li>
-            <li type="disc">{{ receta.ingrediente_3|default_if_none:"&nbsp;" }}</li>
-            <li type="disc">{{ receta.ingrediente_4|default_if_none:"&nbsp;" }}</li>
-            -->
+            {% for ing in object.ingredientes.all %}
+              <li>{{ ing }}  {{ ing.cantidad }} {{ ing.tip_cant }}</li>
+            {% endfor %} ​
           </ul>
-          <div>
+        <div>
             <h4>Elaboración</h4>
-            {{ object.elaboracion }}
-          </div>
+
+        </div>
       </div>
     </article>
 

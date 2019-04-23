@@ -1,0 +1,18 @@
+{% extends "greenfapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Crear cantidad</legend>
+              <div class="form-group">
+                {{ form.cantidad|as_crispy_field }}
+              </div>
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Crear cantidad</button>
+          </div>
+      </form>
+    </div>
+{% endblock content %}

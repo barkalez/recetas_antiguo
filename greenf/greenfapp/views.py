@@ -8,9 +8,7 @@ from django.views.generic import (
     DeleteView
 )
 from django.http import HttpResponse
-from .models import Recetas
-
-
+from .models import Recetas, Ingredientes, Cantidad, Tipo_cantidad
 
 def home(request):
     context = {
@@ -35,6 +33,39 @@ class RecetasCreateView(LoginRequiredMixin, CreateView):
         'author'
     ]
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class IngredientesCreateView(LoginRequiredMixin, CreateView):
+    model = Ingredientes
+    fields = [
+        'nombre',
+        'cantidad',
+        'tip_cant',
+        'fecha_registro'
+    ]
+    success_url = '/recetas/new'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class CantidadCreateView(LoginRequiredMixin, CreateView):
+    model = Cantidad
+    fields = [
+        'cantidad'
+    ]
+    success_url = '/ingredientes/new'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class Tipo_cantidadCreateView(LoginRequiredMixin, CreateView):
+    model = Tipo_cantidad
+    fields = [
+        'tipo_cantidad'
+    ]
+    success_url = '/ingredientes/new'
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -66,7 +97,6 @@ class RecetasDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == recetas.author:
             return True
         return False
-
 
 def about(request):
     return render(request, 'greenfapp/about.html', {'title': 'About'})
